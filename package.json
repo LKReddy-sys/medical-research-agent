@@ -9,7 +9,7 @@
     "start": "node agent.js"
   },
   "dependencies": {
-    "@google/genai": "^0.1.1",
+    "@google/genai": "latest",
     "axios": "^1.7.9",
     "dotenv": "^16.4.5",
     "nodemailer": "^6.9.13"
