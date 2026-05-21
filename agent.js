@@ -9,10 +9,9 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // 1. Fetch newly published research from PubMed API
 async function fetchRecentResearch() {
-    // Looks for papers from the past 1 day matching high impact global journals
-    const searchTerm = '("The Lancet"[Journal] OR "New England Journal of Medicine"[Journal] OR "JAMA"[Journal] OR "Nature Medicine"[Journal]) AND ("2026"[Date - Publication] : "3000"[Date - Publication])';
-    const pubMedUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=${encodeURIComponent(searchTerm)}&reldate=1&datetype=pdat&retmode=json&retmax=15`;
-
+    // Looks for papers from the past 7 days across broad medical topics to guarantee results for testing
+    const searchTerm = 'medicine[journal] OR "clinical trial" OR "breakthrough therapy"';
+    const pubMedUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=${encodeURIComponent(searchTerm)}&reldate=7&datetype=pdat&retmode=json&retmax=10`;
     try {
         const searchRes = await axios.get(pubMedUrl);
         const idList = searchRes.data.esearchresult.idlist;
