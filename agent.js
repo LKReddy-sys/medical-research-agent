@@ -1,8 +1,8 @@
-import http from 'http';
 import { GoogleGenAI } from '@google/genai';
 import nodemailer from 'nodemailer';
 import axios from 'axios';
 import 'dotenv/config';
+import http from 'http';
 
 // Initialize the Gemini API client
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
