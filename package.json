@@ -5,6 +5,7 @@
   "description": "Automated medical research scanning agent",
   "main": "agent.js",
   "scripts": {
+    "build": "npm install",
     "start": "node agent.js"
   },
   "dependencies": {
