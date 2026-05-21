@@ -114,7 +114,6 @@ async function runAgent() {
     }
 }
 
-runAgent();
 // Keeps the free Render Web Service happy by answering ping requests
 http.createServer((req, res) => {
     if (req.url === '/trigger') {
