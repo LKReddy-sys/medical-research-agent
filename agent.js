@@ -1,3 +1,4 @@
+import http from 'http';
 import { GoogleGenAI } from '@google/genai';
 import nodemailer from 'nodemailer';
 import axios from 'axios';
@@ -109,3 +110,14 @@ async function runAgent() {
 }
 
 runAgent();
+// Keeps the free Render Web Service happy by answering ping requests
+http.createServer((req, res) => {
+    if (req.url === '/trigger') {
+        runAgent(); // Runs your agent manually when pinged!
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Agent triggered successfully.');
+    } else {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Medical Agent is online.');
+    }
+}).listen(process.env.PORT || 3000);
